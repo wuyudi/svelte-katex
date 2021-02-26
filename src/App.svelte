@@ -1,7 +1,7 @@
 <script>
   import katex from "katex";
   let formula = "\\int_a^b f(x)\\,dx";
-  var is_display = true;
+  let is_display = true;
   const render = (formula, is_display) =>
     katex.renderToString(formula, {
       displayMode: is_display,
@@ -24,17 +24,16 @@
 </svelte:head>
 
 <main>
-  <div><textarea bind:value={formula} /></div>
-  <button on:click={() => (is_display = !is_display)}>
-    {is_display ? "inline" : "displayMode"} -> {is_display
-      ? "displayMode"
-      : "inline"}
-  </button>
   <div>
-    {@html render(formula, is_display)}
+    <textarea bind:value={formula} />
   </div>
-  <h3>inline</h3>
+  <button on:click={() => (is_display = !is_display)}>
+    {is_display ? "displayMode -> inlineMode" : "displayMode <- inlineMode"}
+  </button>
+  <h3>inlineMode</h3>
   {@html render(formula, false)}
-  <h3>block</h3>
+  <h3>displayMode</h3>
   {@html render(formula, true)}
+  <h3>{is_display ? "displayMode" : "inlineMode"}</h3>
+  {@html render(formula, is_display)}
 </main>
