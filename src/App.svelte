@@ -9,7 +9,7 @@
     });
 </script>
 
-<main>
+<svelte:head>
   <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
@@ -21,6 +21,9 @@
     id="MathJax-script"
     async
     src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+</svelte:head>
+
+<main>
   <div><textarea bind:value={formula} /></div>
   <button on:click={() => (is_display = !is_display)}>
     {is_display ? "inline" : "displayMode"} -> {is_display
